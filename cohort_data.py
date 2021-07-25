@@ -231,8 +231,21 @@ def find_duped_last_names(filename):
     Return:
       - set[str]: a set of strings
     """
+    last_name_list = []
+    duplicate_list = []
 
-    # TODO: replace this with your code
+    open_file = open(filename)
+    for line in open_file:
+      token = line.split("|")
+      last_name = token[1].strip()
+      if last_name in last_name_list:
+        duplicate_list.append(last_name)
+      else:
+        last_name_list.append(last_name)
+
+    return set(duplicate_list)
+
+    
 
 
 def get_housemates_for(filename, name):
