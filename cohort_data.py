@@ -61,9 +61,11 @@ def students_by_cohort(filename, cohort='All'):
       last_name = token[1].strip()
 
       if cohort_name != "I" and cohort_name != "G":
-        students.append(first_name + " " + last_name)
-      if cohort_name == cohort:
-        students.append(first_name + " " + last_name)
+        # students.append(first_name + " " + last_name)
+        if cohort_name == cohort:
+          students.append(first_name + " " + last_name)
+        elif cohort == "All":
+          students.append(first_name + " " + last_name)       
         
     return sorted(students)
 
@@ -107,9 +109,43 @@ def all_names_by_house(filename):
     ghosts = []
     instructors = []
 
-    # TODO: replace this with your code
 
-    return []
+
+    # TODO: replace this with your code
+    open_file = open(filename)
+    for line in open_file:
+      token = line.split("|")
+      cohort_name = token[4].strip()
+      house_name = token[2].strip()
+      first_name = token[0].strip()
+      last_name = token[1].strip()
+    
+      if house_name == "Dumbledore's Army":
+        dumbledores_army.append(first_name + " " + last_name)
+      elif house_name == "Gryffindor":
+        gryffindor.append(first_name + " " + last_name)
+      elif house_name == "Hufflepuff":
+        hufflepuff.append(first_name + " " + last_name)
+      elif house_name == "Ravenclaw":
+        ravenclaw.append(first_name + " " + last_name)
+      elif house_name == "Slytherin":
+        slytherin.append(first_name + " " + last_name)
+      elif cohort_name == "G":
+        ghosts.append(first_name + " " + last_name)
+      elif cohort_name == "I":
+        instructors.append(first_name + " " + last_name)    
+    
+    dumbledores_army.sort()
+    gryffindor.sort()
+    hufflepuff.sort()
+    ravenclaw.sort()
+    slytherin.sort()
+    ghosts.sort()
+    instructors.sort()
+
+    all_houses = [dumbledores_army, gryffindor, hufflepuff, ravenclaw, slytherin, ghosts, instructors]
+
+    return all_houses
 
 
 def all_data(filename):
