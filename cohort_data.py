@@ -259,9 +259,27 @@ def get_housemates_for(filename, name):
     >>> get_housemates_for('cohort_data.txt', 'Hermione Granger')
     {'Angelina Johnson', ..., 'Seamus Finnigan'}
     """
+    cohort_search = ""
+    house_search = ""
+    housemates = set()
 
-    # TODO: replace this with your code
+    open_file = open(filename)
+    for line in open_file:
+      token = line.split("|")
+      first_name = token[0].strip()
+      last_name = token[1].strip()
+      full_name = first_name + " " + last_name
+      house_name = token[2].strip()
+      cohort_name = token[4].strip()
 
+      if name == full_name:
+        cohort_search = cohort_name
+        house_search = house_name
+      else:
+        if cohort_name == cohort_search and house_name == house_search:
+          housemates.add(full_name)
+
+    return housemates
 
 ##############################################################################
 # END OF MAIN EXERCISE.  Yay!  You did it! You Rock!
