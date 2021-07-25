@@ -263,6 +263,8 @@ def get_housemates_for(filename, name):
     house_search = ""
     housemates = set()
 
+    i = 0
+
     open_file = open(filename)
     for line in open_file:
       token = line.split("|")
@@ -275,9 +277,10 @@ def get_housemates_for(filename, name):
       if name == full_name:
         cohort_search = cohort_name
         house_search = house_name
-      else:
-        if cohort_name == cohort_search and house_name == house_search:
-          housemates.add(full_name)
+  # I think it needs to loop back to the top of the file, so it can search for any names that come before the name you're looking for
+      if (house_name == house_search) and (cohort_name == cohort_search):
+        housemates.add(full_name)
+          i += 1
 
     return housemates
 
