@@ -205,8 +205,17 @@ def get_cohort_for(filename, name):
     Return:
       - str: the person's cohort or None
     """
-
-    # TODO: replace this with your code
+    open_file = open(filename)
+    for line in open_file:
+      token = line.split("|")
+      first_name = token[0].strip()
+      last_name = token[1].strip()
+      full_name = first_name + " " + last_name
+      cohort_name = token[4].strip()
+    
+      if full_name == name:
+        return cohort_name
+    
 
 
 def find_duped_last_names(filename):
