@@ -52,11 +52,19 @@ def students_by_cohort(filename, cohort='All'):
     Return:
       - list[list]: a list of lists
     """
-
     students = []
+    open_file = open(filename)
+    for line in open_file:
+      token = line.split("|")
+      cohort_name = token[4].strip()
+      first_name = token[0].strip()
+      last_name = token[1].strip()
 
-    # TODO: replace this with your code
-
+      if cohort_name != "I" and cohort_name != "G":
+        students.append(first_name + " " + last_name)
+      if cohort_name == cohort:
+        students.append(first_name + " " + last_name)
+        
     return sorted(students)
 
 
