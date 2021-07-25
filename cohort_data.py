@@ -171,6 +171,17 @@ def all_data(filename):
 
     # TODO: replace this with your code
 
+    open_file = open(filename)
+    for line in open_file:
+      token = line.split("|")
+      first_name = token[0].strip()
+      last_name = token[1].strip()
+      house_name = token[2].strip()
+      advisor = token[3].strip()
+      cohort_name = token[4].strip()
+      student_information = (first_name + " " + last_name, house_name, advisor, cohort_name)
+      all_data.append(student_information)
+
     return all_data
 
 
